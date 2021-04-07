@@ -1,12 +1,12 @@
 import { reducer } from '../utils/reducers';
 import {
   UPDATE_PRODUCTS,
+  UPDATE_CATEGORIES,
+  UPDATE_CURRENT_CATEGORY,
   ADD_TO_CART,
   UPDATE_CART_QUANTITY,
   REMOVE_FROM_CART,
   ADD_MULTIPLE_TO_CART,
-  UPDATE_CATEGORIES,
-  UPDATE_CURRENT_CATEGORY,
   CLEAR_CART,
   TOGGLE_CART
 } from '../utils/actions';
@@ -38,6 +38,26 @@ test('UPDATE_PRODUCTS', () => {
 
   expect(newState.products.length).toBe(2);
   expect(initialState.products.length).toBe(0);
+});
+
+test('UPDATE_CATEGORIES', () => {
+  let newState = reducer(initialState, {
+    type: UPDATE_CATEGORIES,
+    categories: [{}, {}]
+  });
+
+  expect(newState.categories.length).toBe(2);
+  expect(initialState.categories.length).toBe(1);
+});
+
+test('UPDATE_CURRENT_CATEGORY', () => {
+  let newState = reducer(initialState, {
+    type: UPDATE_CURRENT_CATEGORY,
+    currentCategory: '2'
+  });
+
+  expect(newState.currentCategory).toBe('2');
+  expect(initialState.currentCategory).toBe('1');
 });
 
 test('ADD_TO_CART', () => {
@@ -92,26 +112,6 @@ test('ADD_MULTIPLE_TO_CART', () => {
 
   expect(newState.cart.length).toBe(4);
   expect(initialState.cart.length).toBe(2);
-});
-
-test('UPDATE_CATEGORIES', () => {
-  let newState = reducer(initialState, {
-    type: UPDATE_CATEGORIES,
-    categories: [{}, {}]
-  });
-
-  expect(newState.categories.length).toBe(2);
-  expect(initialState.categories.length).toBe(1);
-});
-
-test('UPDATE_CURRENT_CATEGORY', () => {
-  let newState = reducer(initialState, {
-    type: UPDATE_CURRENT_CATEGORY,
-    currentCategory: '2'
-  });
-
-  expect(newState.currentCategory).toBe('2');
-  expect(initialState.currentCategory).toBe('1');
 });
 
 test('CLEAR_CART', () => {
