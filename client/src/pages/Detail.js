@@ -60,12 +60,9 @@ function Detail() {
   };
 
   useEffect(() => {
-		// already in global store
 		if (products.length) {
 			setCurrentProduct(products.find(product => product._id === id));
-		}
-		// retrieved from server
-		else if (data) {
+		} else if (data) {
 			dispatch({
 				type: UPDATE_PRODUCTS,
 				products: data.products,
@@ -74,9 +71,7 @@ function Detail() {
 			data.products.forEach(product => {
 				idbPromise('products', 'put', product);
 			});
-		}
-		// get cache from idb
-		else if (!loading) {
+		} else if (!loading) {
 			idbPromise('products', 'get').then(indexedProducts => {
 				dispatch({
 					type: UPDATE_PRODUCTS,
