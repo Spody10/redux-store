@@ -25,6 +25,16 @@ const Cart = () => {
       getCart();
     }
   }, [state.cart.length, dispatch]);
+
+    useEffect(() => {
+      if (data) {
+        stripePromise.then(res => {
+          res.redirectToCheckout({
+            sessionId: data.checkout.session,
+          });
+        });
+      }
+    }, [data]);
   
   function toggleCart() {
     dispatch({ type: TOGGLE_CART });
