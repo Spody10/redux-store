@@ -10,13 +10,16 @@
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
     "heroku-postbuild": "cd client && npm run build && npm run seed:prod",
-    "seed:prod":"heroku run node ./server/config/seeds.js"
+    "seed:prod": "heroku run node ./server/config/seeds.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "concurrently": "^6.0.1",
-    "if-env": "^1.0.4"
+    "graphql": "^15.5.0",
+    "if-env": "^1.0.4",
+    "mongoose": "^5.11.15"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "concurrently": "^6.0.1"
+  }
 }
